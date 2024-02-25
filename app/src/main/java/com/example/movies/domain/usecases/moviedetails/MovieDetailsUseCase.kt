@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class MovieDetailsUseCase @Inject constructor(
@@ -18,6 +19,8 @@ class MovieDetailsUseCase @Inject constructor(
     operator fun invoke(id: Long): Flow<NetworkResource<MovieDetailsDomainModel>> {
         return flow {
             emit(repo.getMovieDetails(id))
+        }.onStart {
+            emit(NetworkResource.loading())
         }.flowOn(dispatcher)
     }
 }
