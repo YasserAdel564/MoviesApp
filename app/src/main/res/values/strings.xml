@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoviesApp</string>
+    <string name="error_common_message">An error occurred</string>
+    <string name="label_movies">Select Your Movie</string>
+</resources>

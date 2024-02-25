@@ -1,0 +1,11 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MoviesExample" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+    </style>
+
+    <style name="Theme.MoviesExample" parent="Base.Theme.MoviesExample" />
+</resources>
