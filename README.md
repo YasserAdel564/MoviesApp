@@ -1,6 +1,6 @@
 # MoviesApp
 
-MeOnline is Educational App For Watch Different Courses and Request it 
+Movies App Which Displays Movies and Details of Movies From 'themoviedb'
 
 ## Features
 - [x] Kotlin
