@@ -1,7 +1,6 @@
 package com.example.movies.data.model.movies
 
 import com.google.gson.annotations.SerializedName
-import com.squareup.moshi.Json
 
 data class MovieRemoteModel(
     val adult: Boolean,
