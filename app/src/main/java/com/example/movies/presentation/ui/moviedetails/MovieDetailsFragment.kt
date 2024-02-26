@@ -42,7 +42,7 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>() {
     override fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadingState().collectLatest {
-                binding.progressBar.isVisible = true
+                handleProgressVisibility(true)
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {
@@ -66,13 +66,17 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>() {
     private fun handleSuccessState(movieDetails: MovieDetailsUIModel) {
         with(binding)
         {
-            progressBar.isVisible = false
-            movieUiModel = movieDetails
+            handleProgressVisibility(false)
+            movieDetailsUiModel = movieDetails
             movieDetails.genres?.forEach { genre ->
                 movieGenreChipGroup.addView(Chip(requireContext()).apply {
                     text = genre.name
                 })
             }
         }
+    }
+
+    private fun handleProgressVisibility(isVisible: Boolean) {
+        binding.progressBar.isVisible = isVisible
     }
 }

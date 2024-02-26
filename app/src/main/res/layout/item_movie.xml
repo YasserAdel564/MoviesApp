@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="movieUiModel"
+            type="com.example.movies.presentation.model.movies.MovieUIModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,6 +21,7 @@
         <ImageView
             android:id="@+id/movie_image"
             android:layout_width="90dp"
+            url="@{movieUiModel.getImageUrl(context)}"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="1:1.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +36,7 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/white"
+            android:text="@{movieUiModel.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/movie_image"
             app:layout_constraintTop_toTopOf="@+id/movie_image"
@@ -40,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:gravity="center"
+            android:text="@{movieUiModel.releaseDate}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/movie_rate_text_view"
             app:layout_constraintStart_toEndOf="@id/movie_rate_text_view"
@@ -53,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
+            android:text="@{movieUiModel.rate}"
             android:textColor="@color/white"
             app:drawableStartCompat="@android:drawable/star_off"
             app:drawableTint="#ffe234"

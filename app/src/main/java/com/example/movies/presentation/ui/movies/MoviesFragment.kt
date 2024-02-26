@@ -3,6 +3,7 @@ package com.example.movies.presentation.ui.movies
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -36,10 +37,15 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(), MovieClickListener
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state().collectLatest {
+                handleProgressVisibility(false)
                 adapter.submitData(it.list)
             }
         }
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.loadingState().collectLatest {
+                handleProgressVisibility(true)
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
@@ -60,5 +66,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(), MovieClickListener
                 id
             )
         )
+    }
+
+    private fun handleProgressVisibility(isVisible: Boolean) {
+        binding.progressBar.isVisible = isVisible
     }
 }

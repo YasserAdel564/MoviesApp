@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="movieUiModel"
+            name="movieDetailsUiModel"
             type="com.example.movies.presentation.model.moviedetails.MovieDetailsUIModel" />
     </data>
 
@@ -45,7 +45,7 @@
                     android:id="@+id/movie_image"
                     android:layout_width="150dp"
                     android:layout_height="0dp"
-                    url="@{movieUiModel.getImageUrl(context)}"
+                    url="@{movieDetailsUiModel.getImageUrl(context)}"
                     app:layout_constraintDimensionRatio="1:1.5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="start"
-                    android:text="@{movieUiModel.title}"
+                    android:text="@{movieDetailsUiModel.title}"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@{movieUiModel.releaseDate}"
+                    android:text="@{movieDetailsUiModel.releaseDate}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="@+id/movie_rate_text_view"
                     app:layout_constraintTop_toBottomOf="@+id/movie_rate_text_view"
@@ -85,7 +85,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="@{movieUiModel.rate}"
+                    android:text="@{movieDetailsUiModel.rate}"
                     android:textColor="@color/white"
                     app:drawableStartCompat="@android:drawable/star_off"
                     app:drawableTint="#ffe234"
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:textColor="@color/white"
-                    android:text="@{movieUiModel.overview}"
+                    android:text="@{movieDetailsUiModel.overview}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/movie_genre_chip_group"

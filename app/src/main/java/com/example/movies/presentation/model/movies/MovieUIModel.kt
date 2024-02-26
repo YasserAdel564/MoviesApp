@@ -7,10 +7,10 @@ import com.example.movies.presentation.utils.attachImageBaseUrl
 data class MovieUIModel(
     val id: Long,
     val title: String,
-    val image: String,
+    private val image: String,
     val description: String,
     val releaseDate: String,
-    val rate: Double
+    private val rate: Double
 ) : BaseUiState() {
 
     fun getImageUrl(context: Context): String {
