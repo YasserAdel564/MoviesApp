@@ -3,6 +3,7 @@ package com.example.movies.presentation.ui.moviedetails
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -11,7 +12,6 @@ import com.example.movies.R
 import com.example.movies.databinding.FragmentMovieDetailsBinding
 import com.example.movies.presentation.base.BaseFragment
 import com.example.movies.presentation.model.moviedetails.MovieDetailsUIModel
-import com.example.movies.presentation.utils.loadImageUrl
 import com.example.movies.presentation.viewmodel.MovieDetailsViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,6 +42,7 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>() {
     override fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadingState().collectLatest {
+                binding.progressBar.isVisible = true
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {
@@ -65,13 +66,10 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>() {
     private fun handleSuccessState(movieDetails: MovieDetailsUIModel) {
         with(binding)
         {
-            context?.let { loadImageUrl(movieImage, movieDetails.getImageUrl(it)) }
-            movieTitleTextView.text = movieDetails.title
-            movieDescriptionTextView.text = movieDetails.overview
-            movieDateTextView.text = movieDetails.releaseDate
-            movieRateTextView.text = movieDetails.getRate()
+            progressBar.isVisible = false
+            movieUiModel = movieDetails
             movieDetails.genres?.forEach { genre ->
-                binding.movieGenreChipGroup.addView(Chip(requireContext()).apply {
+                movieGenreChipGroup.addView(Chip(requireContext()).apply {
                     text = genre.name
                 })
             }
