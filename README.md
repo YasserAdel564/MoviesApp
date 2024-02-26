@@ -18,6 +18,7 @@ Movies App Which Displays Movies and Details of Movies From 'themoviedb'
 - [x] Navigation Components
 - [x] Google Material Design
 - [x] Junit
+- [x] Data Binding
 
  
 ## Report Bug / Issue / Improvement
