@@ -1,42 +1,33 @@
 package com.example.movies.presentation.viewmodel
 
-import com.example.movies.presentation.model.moviedetails.MovieDetailsUIModel
-import com.example.movies.data.utils.resource.Status
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.movies.domain.mappers.MovieDetailsUIMapper
 import com.example.movies.domain.usecases.moviedetails.MovieDetailsUseCase
-import com.example.movies.presentation.base.BaseViewModel
+import com.example.movies.presentation.model.moviedetails.MovieDetailsUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
-    private val movieDetailsUseCase: MovieDetailsUseCase
-) : BaseViewModel<MovieDetailsUIModel>() {
+    private val movieDetailsUseCase: MovieDetailsUseCase,
+) : ViewModel() {
+    private val _movieDetailsState: MutableStateFlow<MovieDetailsUIModel?> =
+        MutableStateFlow(value = null)
+    val movieDetailsState: MutableStateFlow<MovieDetailsUIModel?> get() = _movieDetailsState
 
-    override fun state(): Flow<MovieDetailsUIModel> {
-        return state.filterIsInstance()
-    }
 
-
-    fun loadMovieDetails(id: Long) {
-        launchInViewModelScope {
-            movieDetailsUseCase.invoke(id).collectLatest { result ->
-                when (result.status) {
-                    Status.LOADING -> triggerLoadingState()
-                    Status.SUCCESS -> result.data?.let {
-                        triggerUiState(
-                            MovieDetailsUIMapper.mapMovieFromDomainToUIModel(
-                                it
-                            )
-                        )
+    suspend fun getMovieDetails(id: Long) {
+        viewModelScope.launch {
+            movieDetailsUseCase.invoke(id)
+                .collect {
+                    it.data?.let { movieDetailsDomainModel ->
+                        _movieDetailsState.value =
+                            MovieDetailsUIMapper.mapMovieFromDomainToUIModel(movieDetailsDomainModel)
                     }
-
-                    Status.ERROR -> triggerErrorState(result.errorMessage)
                 }
-            }
         }
     }
 
