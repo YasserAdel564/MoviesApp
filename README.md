@@ -1,10 +1,7 @@
 # MoviesApp
 
 Movies App Which Displays Movies and Details of Movies From 'themoviedb'
-<p align="center">
-  <img src="https://github.com/YasserAdel564/MoviesApp/blob/main/screenshots/Screenshot_1708885532.png" width="350" title="hover text">
-  <img src="https://github.com/YasserAdel564/MoviesApp/blob/main/screenshots/Screenshot_1708885543.png" width="350" alt="accessibility text">
-</p>
+
 
 ## Features
 - [x] Kotlin
