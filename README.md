@@ -18,13 +18,14 @@ Movies App Which Displays Movies and Details of Movies From 'themoviedb'
 - [x] Navigation Components
 - [x] Google Material Design
 - [x] Junit
+- [x] JetPackCompose
 
  
 ## Report Bug / Issue / Improvement
 * Please feel free to report bug , issue or improvement - see the [Issues](https://github.com/YasserAdel564/MoviesApp/issues) section fisrt to prevent duplicates. Also, if you know how to fix this issue please feel free to fork this repo and make a pull request and i will gladly review and merge and add you as a contributer :)
 
 ## Coming Features
- * Replace XML With JetPackCompose
+ * Integrate UI Animation
 
 ## License
 * This project is licensed under the MIT License - see the [License](https://github.com/YasserAdel564/MoviesApp/blob/main/LICENSE)
